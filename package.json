@@ -1,0 +1,23 @@
+{
+  "name": "bridge-server",
+  "version": "1.0.0",
+  "description": "Bride http connections to GPIO output.",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+ssh://git@github.com/capevace/bridge-server.git"
+  },
+  "author": "Lukas Mateffy (@Capevace)",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/capevace/bridge-server/issues"
+  },
+  "homepage": "https://github.com/capevace/bridge-server#readme",
+  "dependencies": {
+    "433mhz": "^1.1.0",
+    "express": "^4.17.1"
+  }
+}
