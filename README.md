@@ -1,6 +1,6 @@
 <div align="center">
     <a href="https://mateffy.me/mission-control-project">
-        <img src="resources/icon.png">
+        <img src="resources/icon-web.png">
     </a>
     <h1><strong>Mission Control</strong> Bridge Server</h1>
     <p>
