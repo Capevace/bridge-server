@@ -4,7 +4,7 @@
     </a>
     <h1><strong>Mission Control</strong> Bridge Server</h1>
     <p>
-        Service
+        This server offers a HTTP interface to control GPIO outputs on a Raspberry Pi, specifically to transmit 433Mhz signals.
     </p>
     <p>
         <a href="https://mateffy.me/mission-control-bridge-server">More about Mission Control</a>
