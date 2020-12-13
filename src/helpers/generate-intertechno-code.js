@@ -1,4 +1,4 @@
-module.exports = function(deviceCode, state) {
+module.exports = function generateDeviceCode(deviceCode, state) {
   deviceCode = deviceCode.toUpperCase();
 	  
   let house = '';
