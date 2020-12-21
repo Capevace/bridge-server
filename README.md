@@ -47,9 +47,3 @@ Send an NEC infrared signal to the Arduino provided in arguments.
 Send a preconfigured IR command for a given device.
 - DEVICE (String) - *The device to target (`panasonic`)*
 - COMMAND (String) - *The command name (`ONOFF`)*
-
-
-### Planned State Service
-Currently the server is pretty dumb, as it simply does what you tell it to do (turn on/off). It doesn't keep any state so we can't tell it to _toggle_ the outlet - the server doesn't yet know what state the outlet is in.
-
-The state service will probably live in the mission-control-core instead.
