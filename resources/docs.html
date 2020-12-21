@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Bridge Server Docs</title>
+</head>
+<body>
+<h2 id="cli">CLI</h2>
+<pre><code class="lang-sh"><span class="hljs-keyword">node</span> <span class="hljs-title">src</span>/index.js [IR_DEVICE_HOST] [IR_DEVICE_PORT]
+</code></pre>
+<ul>
+<li>IR_DEVICE_HOST - <em>The IP of the Arduino</em></li>
+<li>IR_DEVICE_PORT - <em>The port of the Arduino</em></li>
+</ul>
+<h2 id="433mhz-route">433Mhz route</h2>
+<pre><code>/<span class="hljs-number">433</span>mhz/<span class="hljs-symbol">:CODE/</span><span class="hljs-symbol">:STATE</span>
+</code></pre><p>Send an intertechno 433Mhz code using the attached 433Mhz transmitter.</p>
+<ul>
+<li>CODE (String) - <em>The intertechno code (e.g. &#39;A1&#39; or &#39;C3&#39;)</em></li>
+<li>STATE (String) - <em><code>on</code> or <code>off</code></em></li>
+</ul>
+<h2 id="infrared-routes">Infrared routes</h2>
+<pre><code>/infrared/nec/<span class="hljs-symbol">:ADDRESS/</span><span class="hljs-symbol">:COMMAND</span>
+</code></pre><p>Send an NEC infrared signal to the Arduino provided in arguments.</p>
+<ul>
+<li>ADDRESS (HEX/Decimal) - <em>The NEC address (most likely <code>0x0</code>)</em></li>
+<li>COMMAND (HEX/Decimal) - <em>The NEC command</em></li>
+</ul>
+<pre><code>/infrared/device/<span class="hljs-symbol">:DEVICE/</span><span class="hljs-symbol">:COMMAND</span>
+</code></pre><p>Send a preconfigured IR command for a given device.</p>
+<ul>
+<li>DEVICE (String) - <em>The device to target (<code>panasonic</code>)</em></li>
+<li>COMMAND (String) - <em>The command name (<code>ONOFF</code>)</em></li>
+</ul>
+
+</body>
+</html>

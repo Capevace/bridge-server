@@ -7,7 +7,7 @@ const app = new Router();
 
 app.get('/:code/:state', function (req, res) {
 	const dryRun = !!req.query.dry;
-	const state = req.params.state === 'on';
+	const state = String(req.params.state).toLowerCase() === 'on';
 	const code = generateIntertechnoCode(String(req.params.code), state);
 
 	// Check for code present or error out

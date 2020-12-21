@@ -15,7 +15,38 @@
 
 ## Features
 - Accepts HTTP requests to send 433Mhz data
-- Currently works with Intertechno wireless outlets but can be adapted to send any 433Mhz codes 
+- Currently works with Intertechno wireless outlets but can be adapted to send any 433Mhz codes
+
+## CLI
+```sh
+node src/index.js [IR_DEVICE_HOST] [IR_DEVICE_PORT]
+``` 
+- IR_DEVICE_HOST - *The IP of the Arduino*
+- IR_DEVICE_PORT - *The port of the Arduino*
+
+## 433Mhz route
+```
+/433mhz/:CODE/:STATE
+```
+Send an intertechno 433Mhz code using the attached 433Mhz transmitter.
+
+- CODE (String) - *The intertechno code (e.g. 'A1' or 'C3')*
+- STATE (String) - *`on` or `off`*
+
+## Infrared routes
+```
+/infrared/nec/:ADDRESS/:COMMAND
+```
+Send an NEC infrared signal to the Arduino provided in arguments.
+- ADDRESS (HEX/Decimal) - *The NEC address (most likely `0x0`)*
+- COMMAND (HEX/Decimal) - *The NEC command*
+
+```
+/infrared/device/:DEVICE/:COMMAND
+```
+Send a preconfigured IR command for a given device.
+- DEVICE (String) - *The device to target (`panasonic`)*
+- COMMAND (String) - *The command name (`ONOFF`)*
 
 
 ### Planned State Service
