@@ -4,7 +4,7 @@ const app = new Router();
 
 const commands = {
 	'device': {
-		'command': 0x123
+		'command': 0x1231
 	}
 }
 
