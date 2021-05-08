@@ -4,8 +4,9 @@ const app = express();
 const PORT = 4001;
 
 app.use('/433mhz', require('./routes/433mhz'));
-app.use('/infrared', require('./routes/intertechno'));
+app.use('/infrared', require('./routes/infrared'));
+app.use('/', require('./routes/docs'));
 
 app.listen(PORT, function () {
-	console.log(`Mission Control Bridge Server listening on port ${PORT}!`);
+	console.log(`[HTTP] Bridge Server listening on port ${PORT}`);
 });
