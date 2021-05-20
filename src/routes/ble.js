@@ -45,7 +45,7 @@ module.exports = function createBLERouter(mac) {
 
 	app.get('/saturation/:saturation', function (req, res) {
 		// :saturation is in percent
-		const parse = x => Math.max(0.0, Math.min(100, parseFloat(x))) || 100.0;
+		const parse = x => Math.max(0.0, Math.min(100, parseFloat(x))) || 0.0;
 		const saturation = parse(req.params.saturation);
 
 		rgb
@@ -61,7 +61,7 @@ module.exports = function createBLERouter(mac) {
 
 	app.get('/brightness/:brightness', function (req, res) {
 		// :brightness is in percent
-		const parse = x => Math.max(0.0, Math.min(100, parseFloat(x))) || 100.0;
+		const parse = x => Math.max(0.0, Math.min(100, parseFloat(x))) || 0.0;
 		const brightness = parse(req.params.brightness);
 
 		rgb
