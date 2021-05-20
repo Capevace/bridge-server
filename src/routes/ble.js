@@ -6,7 +6,7 @@ const { RGBLEDDriver } = require('ble-led-driver');
 
 module.exports = function createBLERouter(mac) {
 	const app = new Router();
-	const led = new RGBLEDDriver(mac);
+	const rgb = new RGBLEDDriver(mac);
 
 	rgb.connect()
 		.catch(console.error);
