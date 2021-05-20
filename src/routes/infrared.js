@@ -6,13 +6,8 @@ const generateNECString = require('../helpers/generate-nec-string');
 const app = new Router();
 
 const commands = {
-<<<<<<< HEAD
-	'device': {
-		'command': 0x1231
-=======
 	'panasonic': {
 		'onoff': 0x123
->>>>>>> d1f88af95eab81f62606b0239f4d23a1c877f3a2
 	}
 };
 
