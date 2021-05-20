@@ -28,6 +28,53 @@ module.exports = function createBLERouter(mac) {
 		});
 	});
 
+	app.get('/hue/:hue', function (req, res) {
+		const parse = x => Math.max(0.0, Math.min(360.0, parseFloat(x))) || 0.0;
+		const hue = parse(req.params.hue);
+
+		rgb
+			.setMode('solid')
+			.setHue(hue);
+
+		res.json({
+			status: 200,
+			mode: 'solid',
+			rgb: rgb.currentMode.color
+		});
+	});
+
+	app.get('/saturation/:saturation', function (req, res) {
+		// :saturation is in percent
+		const parse = x => Math.max(0.0, Math.min(100, parseFloat(x))) || 100.0;
+		const saturation = parse(req.params.saturation);
+
+		rgb
+			.setMode('solid')
+			.setSaturation(saturation / 100);
+
+		res.json({
+			status: 200,
+			mode: 'solid',
+			rgb: rgb.currentMode.color
+		});
+	});
+
+	app.get('/brightness/:brightness', function (req, res) {
+		// :brightness is in percent
+		const parse = x => Math.max(0.0, Math.min(100, parseFloat(x))) || 100.0;
+		const brightness = parse(req.params.brightness);
+
+		rgb
+			.setMode('solid')
+			.setBrightness(brightness / 100);
+
+		res.json({
+			status: 200,
+			mode: 'solid',
+			rgb: rgb.currentMode.color
+		});
+	});
+
 	app.get('/mode/rainbow', function (req, res) {
 		const parse = x => Math.max(0.0, Math.min(255.0, parseFloat(x))) || 0.0;
 		const speed = req.query.speed
@@ -42,7 +89,7 @@ module.exports = function createBLERouter(mac) {
 		res.json({
 			status: 200,
 			mode: 'rainbow',
-			speed
+			speed: rgb.currentMode.speed
 		});
 	});
 
@@ -60,7 +107,7 @@ module.exports = function createBLERouter(mac) {
 		res.json({
 			status: 200,
 			mode: 'random',
-			speed
+			speed: rgb.currentMode.speed
 		});
 	});
 

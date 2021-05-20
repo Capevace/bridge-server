@@ -60,6 +60,8 @@ This will put the driver in mode 'solid' so active modes are paused.
 /ble/mode/rainbow?speed=1
 ```
 Enable Rainbow mode (by rotating hue)
+
+
 **Query**
 - speed (int) Number of hue rotations per second
 
@@ -67,5 +69,7 @@ Enable Rainbow mode (by rotating hue)
 /ble/mode/random?speed=1
 ```
 Enable Random mode
+
+
 **Query**
 - speed (int) Seconds between color changes
