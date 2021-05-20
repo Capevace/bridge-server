@@ -98,7 +98,7 @@ module.exports = function createBLERouter(mac) {
 			? mode.hueColor[1]
 			: mode.chroma(...mode.color, 'rgb').hsl()[1];
 
-		res.send(String(saturation));
+		res.send(String(saturation * 100));
 	});
 
 	app.all('/brightness/:brightness', function (req, res) {
@@ -123,7 +123,7 @@ module.exports = function createBLERouter(mac) {
 			? mode.hueColor[2]
 			: mode.chroma(...mode.color, 'rgb').hsl()[2];
 
-		res.send(String(brightness));
+		res.send(String(brightness * 100));
 	});
 
 	app.all('/mode/rainbow', function (req, res) {
