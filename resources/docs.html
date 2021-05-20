@@ -3,7 +3,22 @@
 <head>
 	<title>Bridge Server Docs</title>
 </head>
-<body>
+<body><div align="center">
+    <h1>Mission Control <i>Bridge Server</i></h1>
+    <p>
+        This server offers a HTTP interface to control GPIO outputs on a Raspberry Pi, specifically to transmit 433Mhz signals.
+    </p>
+    <p>
+        <a href="https://mateffy.me/mission-control-project">More about Mission Control</a>
+    </p>
+</div>
+
+<p><br></p>
+<h2 id="features">Features</h2>
+<ul>
+<li>Accepts HTTP requests to send 433Mhz data</li>
+<li>Currently works with Intertechno wireless outlets but can be adapted to send any 433Mhz codes</li>
+</ul>
 <h2 id="cli">CLI</h2>
 <pre><code class="lang-sh"><span class="hljs-keyword">node</span> <span class="hljs-title">src</span>/index.js [IR_DEVICE_HOST] [IR_DEVICE_PORT]
 </code></pre>
@@ -30,6 +45,25 @@
 <ul>
 <li>DEVICE (String) - <em>The device to target (<code>panasonic</code>)</em></li>
 <li>COMMAND (String) - <em>The command name (<code>ONOFF</code>)</em></li>
+</ul>
+<h2 id="ble-routes-ble-and-qhm-d461-">BLE Routes (<code>/ble</code> and <code>/qhm-d461</code>)</h2>
+<pre><code>/ble/rgb/<span class="hljs-symbol">:R/</span><span class="hljs-symbol">:G/</span><span class="hljs-symbol">:B</span>
+</code></pre><p>Set a color to be displayed.
+This will put the driver in mode &#39;solid&#39; so active modes are paused.</p>
+<ul>
+<li>R, G, B (0...255) - <em>RGB color values</em></li>
+</ul>
+<pre><code>/ble/mode/<span class="hljs-built_in">rainbow</span>?<span class="hljs-built_in">speed</span>=<span class="hljs-number">1</span>
+</code></pre><p>Enable Rainbow mode (by rotating hue)
+<strong>Query</strong></p>
+<ul>
+<li>speed (int) Number of hue rotations per second</li>
+</ul>
+<pre><code>/ble/mode/<span class="hljs-built_in">random</span>?<span class="hljs-built_in">speed</span>=<span class="hljs-number">1</span>
+</code></pre><p>Enable Random mode
+<strong>Query</strong></p>
+<ul>
+<li>speed (int) Seconds between color changes</li>
 </ul>
 
 </body>

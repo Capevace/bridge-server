@@ -47,3 +47,25 @@ Send an NEC infrared signal to the Arduino provided in arguments.
 Send a preconfigured IR command for a given device.
 - DEVICE (String) - *The device to target (`panasonic`)*
 - COMMAND (String) - *The command name (`ONOFF`)*
+
+## BLE Routes (`/ble` and `/qhm-d461`)
+```
+/ble/rgb/:R/:G/:B
+```
+Set a color to be displayed.
+This will put the driver in mode 'solid' so active modes are paused.
+- R, G, B (0...255) - *RGB color values*
+
+```
+/ble/mode/rainbow?speed=1
+```
+Enable Rainbow mode (by rotating hue)
+**Query**
+- speed (int) Number of hue rotations per second
+
+```
+/ble/mode/random?speed=1
+```
+Enable Random mode
+**Query**
+- speed (int) Seconds between color changes
