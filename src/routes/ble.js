@@ -37,7 +37,7 @@ module.exports = function createBLERouter(mac) {
 		rgb.setMode('rainbow');
 
 		if (speed)
-			rgb.setSpeed(speed);
+			rgb.currentMode.setSpeed(speed);
 
 		res.json({
 			status: 200,
@@ -55,7 +55,7 @@ module.exports = function createBLERouter(mac) {
 		rgb.setMode('random');
 
 		if (speed)
-			rgb.setSpeed(speed);
+			rgb.currentMode.setSpeed(speed);
 
 		res.json({
 			status: 200,
