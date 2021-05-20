@@ -63,6 +63,15 @@ module.exports = function createBLERouter(mac) {
 		});
 	});
 
+	app.get('/hue', function (req, res) {
+		const mode = rgb.currentMode;
+		const hue = mode.hueColor
+			? mode.hueColor[0]
+			: mode.chroma(...mode.color, 'rgb').hsl()[0];
+
+		res.write(hue).end();
+	});
+
 	app.all('/saturation/:saturation', function (req, res) {
 		// :saturation is in percent
 		const parse = x => Math.max(0.0, Math.min(100, parseFloat(x))) || 0.0;
@@ -79,6 +88,15 @@ module.exports = function createBLERouter(mac) {
 		});
 	});
 
+	app.get('/saturation', function (req, res) {
+		const mode = rgb.currentMode;
+		const saturation = mode.hueColor
+			? mode.hueColor[1]
+			: mode.chroma(...mode.color, 'rgb').hsl()[1];
+
+		res.write(saturation).end();
+	});
+
 	app.all('/brightness/:brightness', function (req, res) {
 		// :brightness is in percent
 		const parse = x => Math.max(0.0, Math.min(100, parseFloat(x))) || 0.0;
@@ -93,6 +111,15 @@ module.exports = function createBLERouter(mac) {
 			mode: 'solid',
 			rgb: rgb.currentMode.color
 		});
+	});
+
+	app.get('/brightness', function (req, res) {
+		const mode = rgb.currentMode;
+		const brightness = mode.hueColor
+			? mode.hueColor[2]
+			: mode.chroma(...mode.color, 'rgb').hsl()[2];
+
+		res.write(brightness).end();
 	});
 
 	app.all('/mode/rainbow', function (req, res) {
