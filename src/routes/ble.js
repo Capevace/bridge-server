@@ -11,7 +11,27 @@ module.exports = function createBLERouter(mac) {
 	rgb.connect()
 		.catch(console.error);
 
-	app.get('/rgb/:r/:g/:b', function (req, res) {
+	app.all('/on', function (req, res) {
+		rgb.setMode('solid');
+
+		res.json({
+			status: 200,
+			mode: 'solid',
+			rgb: rgb.currentMode.color
+		});
+	});
+
+	app.all('/off', function (req, res) {
+		rgb.setMode('blackout');
+
+		res.json({
+			status: 200,
+			mode: 'solid',
+			rgb: rgb.currentMode.color
+		});
+	});
+
+	app.all('/rgb/:r/:g/:b', function (req, res) {
 		const parse = x => Math.max(0, Math.min(255, parseInt(x))) || 0;
 		const r = parse(req.params.r);
 		const g = parse(req.params.g);
@@ -28,7 +48,7 @@ module.exports = function createBLERouter(mac) {
 		});
 	});
 
-	app.get('/hue/:hue', function (req, res) {
+	app.all('/hue/:hue', function (req, res) {
 		const parse = x => Math.max(0.0, Math.min(360.0, parseFloat(x))) || 0.0;
 		const hue = parse(req.params.hue);
 
@@ -43,7 +63,7 @@ module.exports = function createBLERouter(mac) {
 		});
 	});
 
-	app.get('/saturation/:saturation', function (req, res) {
+	app.all('/saturation/:saturation', function (req, res) {
 		// :saturation is in percent
 		const parse = x => Math.max(0.0, Math.min(100, parseFloat(x))) || 0.0;
 		const saturation = parse(req.params.saturation);
@@ -59,7 +79,7 @@ module.exports = function createBLERouter(mac) {
 		});
 	});
 
-	app.get('/brightness/:brightness', function (req, res) {
+	app.all('/brightness/:brightness', function (req, res) {
 		// :brightness is in percent
 		const parse = x => Math.max(0.0, Math.min(100, parseFloat(x))) || 0.0;
 		const brightness = parse(req.params.brightness);
@@ -75,7 +95,7 @@ module.exports = function createBLERouter(mac) {
 		});
 	});
 
-	app.get('/mode/rainbow', function (req, res) {
+	app.all('/mode/rainbow', function (req, res) {
 		const parse = x => Math.max(0.0, Math.min(255.0, parseFloat(x))) || 0.0;
 		const speed = req.query.speed
 			? parse(req.query.speed)
@@ -93,7 +113,7 @@ module.exports = function createBLERouter(mac) {
 		});
 	});
 
-	app.get('/mode/random', function (req, res) {
+	app.all('/mode/random', function (req, res) {
 		const parse = x => Math.max(0.0, parseFloat(x)) || 0.0;
 		const speed = req.query.speed
 			? parse(req.query.speed)
