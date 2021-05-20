@@ -31,7 +31,7 @@ module.exports = function createBLERouter(mac) {
 		});
 	});
 
-	app.all('/status', function (req, res) {
+	app.get('/status', function (req, res) {
 		res.send(rgb.currentMode.type === 'blackout' ? '0' : '1');
 	});
 
