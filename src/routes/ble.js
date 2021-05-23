@@ -1,5 +1,6 @@
 const Router = require('express').Router;
 const { RGBLEDDriver } = require('ble-led-driver');
+const mockLED = require('../helpers/mock-led');
 // const transmitCode = require('433mhz');
 
 // const generateIntertechnoCode = require('../helpers/generate-intertechno-code');
@@ -8,8 +9,16 @@ module.exports = function createBLERouter(mac) {
 	const app = new Router();
 	const rgb = new RGBLEDDriver(mac);
 
-	rgb.connect()
-		.catch(console.error);
+	// In debug mode we print a color box to stdout
+	// instead of connecting to the BLE LED
+	if (Array.from(process.argv).includes('--debug')) {
+		// Mocked connect
+		rgb.led = mockLED(rgb);
+		rgb.setTickSpeed(rgb.tickSpeed);
+	} else {
+		rgb.connect()
+			.catch(console.error.bind(console));
+	}
 
 	app.all('/on', function (req, res) {
 		rgb.setMode('solid');
@@ -165,7 +174,10 @@ module.exports = function createBLERouter(mac) {
 	let notificationTimeout = null;
 
 	app.all('/mode/notification', function (req, res) {
-		if (this.notificationTimeout) {
+		const duration = 1000;
+		let oldMode = rgb.currentMode;
+
+		if (notificationTimeout) {
 			// We still have a notification displaying
 			// Count this as "all good" cause we don't need to display two right away
 			return res
@@ -176,30 +188,21 @@ module.exports = function createBLERouter(mac) {
 					duration: 1,
 				});
 		}
-
-		try {
-			const duration = 1000;
-			let oldMode = rgb.currentMode;
-
-			rgb.setMode('notification')
-				.setDuration(duration);
-
-			notificationTimeout = setTimeout(() => {
-				rgb.setMode(oldMode);
-
-				notificationTimeout = null;
-			}, duration);
-
-			res.json({
-				status: 200,
-				mode: 'notification',
-				duration: duration
-			});
-		} catch (e) {
-			res.status(500).json({ status: 500, error: e.message });
-			console.error(e);
-		}
 		
+		rgb.setMode('notification')
+			.setDuration(duration);
+
+		notificationTimeout = setTimeout(() => {
+			rgb.setMode(oldMode.type);
+
+			notificationTimeout = null;
+		}, duration);
+
+		res.json({
+			status: 200,
+			mode: 'notification',
+			duration: duration
+		});
 	});
 
 	return app;
