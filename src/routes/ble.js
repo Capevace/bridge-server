@@ -177,23 +177,29 @@ module.exports = function createBLERouter(mac) {
 				});
 		}
 
-		const duration = 1000;
-		let oldMode = rgb.currentMode;
+		try {
+			const duration = 1000;
+			let oldMode = rgb.currentMode;
 
-		rgb.setMode('notification')
-			.setDuration(duration);
+			rgb.setMode('notification')
+				.setDuration(duration);
 
-		notificationTimeout = setTimeout(() => {
-			rgb.setMode(oldMode);
+			notificationTimeout = setTimeout(() => {
+				rgb.setMode(oldMode);
 
-			notificationTimeout = null;
-		}, duration);
+				notificationTimeout = null;
+			}, duration);
 
-		res.json({
-			status: 200,
-			mode: 'notification',
-			duration: duration
-		});
+			res.json({
+				status: 200,
+				mode: 'notification',
+				duration: duration
+			});
+		} catch (e) {
+			res.status(500).json({ status: 500, error: e.message });
+			console.error(e);
+		}
+		
 	});
 
 	return app;
