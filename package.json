@@ -18,7 +18,7 @@
   "homepage": "https://github.com/capevace/bridge-server#readme",
   "dependencies": {
     "433mhz": "^1.1.0",
-    "ble-led-driver": "^0.0.8",
+    "ble-led-driver": "^0.0.9",
     "express": "^4.17.1"
   }
 }
