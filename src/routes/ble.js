@@ -162,5 +162,39 @@ module.exports = function createBLERouter(mac) {
 		});
 	});
 
+	let notificationTimeout = null;
+
+	app.all('/mode/notification', function (req, res) {
+		if (this.notificationTimeout) {
+			// We still have a notification displaying
+			// Count this as "all good" cause we don't need to display two right away
+			return res
+				.status(202)
+				.json({
+					status: 202,
+					mode: 'notification',
+					duration: 1,
+				});
+		}
+
+		const duration = 1000;
+		let oldMode = rgb.currentMode;
+
+		rgb.setMode('notification')
+			.setDuration(duration);
+
+		notificationTimeout = setTimeout(() => {
+			rgb.setMode(oldMode);
+
+			notificationTimeout = null;
+		}, duration);
+
+		res.json({
+			status: 200,
+			mode: 'notification',
+			duration: duration
+		});
+	});
+
 	return app;
 };
