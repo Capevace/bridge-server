@@ -9,7 +9,7 @@
         This server offers a HTTP interface to control GPIO outputs on a Raspberry Pi, specifically to transmit 433Mhz signals.
     </p>
     <p>
-        <a href="https://mateffy.me/mission-control-project">More about Mission Control</a>
+        <a href="https://mission-control.js.org">More about Mission Control</a>
     </p>
 </div>
 
@@ -18,6 +18,7 @@
 <ul>
 <li>Accepts HTTP requests to send 433Mhz data</li>
 <li>Currently works with Intertechno wireless outlets but can be adapted to send any 433Mhz codes</li>
+<li>Pass <span class="hljs-symbol">--debug</span> for easier development of BLE modes</li>
 </ul>
 <h2 id="cli">CLI</h2>
 <pre><code class="lang-sh"><span class="hljs-keyword">node</span> <span class="hljs-title">src</span>/index.js [IR_DEVICE_HOST] [IR_DEVICE_PORT]

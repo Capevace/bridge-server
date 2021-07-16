@@ -16,6 +16,7 @@
 ## Features
 - Accepts HTTP requests to send 433Mhz data
 - Currently works with Intertechno wireless outlets but can be adapted to send any 433Mhz codes
+- Pass `--debug` for easier development of BLE modes
 
 ## CLI
 ```sh

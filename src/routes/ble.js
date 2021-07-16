@@ -44,6 +44,10 @@ module.exports = function createBLERouter(mac) {
 		res.send(rgb.currentMode.type === 'blackout' ? '0' : '1');
 	});
 
+	app.get('/status', function (req, res) {
+		res.send(rgb.currentMode.type === 'blackout' ? '0' : '1');
+	});
+
 	app.all('/rgb/:r/:g/:b', function (req, res) {
 		const parse = x => Math.max(0, Math.min(255, parseInt(x))) || 0;
 		const r = parse(req.params.r);
@@ -133,6 +137,26 @@ module.exports = function createBLERouter(mac) {
 			: mode.chroma(...mode.color, 'rgb').hsl()[2];
 
 		res.send(String(brightness * 100));
+	});
+
+	app.get('/mode', function (req, res) {
+		res.json({
+			mode: rgb.currentMode.type
+		});
+	});
+
+	app.get('/mode/:mode/status', function (req, res) {
+		res.send(rgb.currentMode.type === req.params.mode ? '1' : '0');
+	});
+
+	// Turn on solid mode, without setting a color (inherit previous)
+	app.get('/mode/solid', function (req, res) {
+		rgb.setMode('solid');
+
+		res.json({
+			status: 200,
+			mode: 'solid'
+		});
 	});
 
 	app.all('/mode/rainbow', function (req, res) {
