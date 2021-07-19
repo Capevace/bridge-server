@@ -6,6 +6,11 @@ try {
 
 	const createBLERouter = require('./routes/ble');
 
+	app.use((req, res, next) => {
+		console.log(new Date().toISOString(), req.method, req.url, res.statusCode);
+		next();
+	});
+
 	app.use('/433mhz', require('./routes/433mhz'));
 	app.use('/infrared', require('./routes/infrared'));
 
