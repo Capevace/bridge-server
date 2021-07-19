@@ -54,9 +54,13 @@ module.exports = function createBLERouter(mac) {
 		const g = parse(req.params.g);
 		const b = parse(req.params.b);
 
+		const previousColor = rgb.currentMode.color;
+
 		rgb
 			.setMode('solid')
 			.setColor(r, g, b, 'rgb');
+
+		rgb.setTransitionOverride(previousColor, rgb.currentMode.color);
 
 		res.json({
 			status: 200,
@@ -220,7 +224,7 @@ module.exports = function createBLERouter(mac) {
 			rgb.setMode(oldMode.type);
 
 			notificationTimeout = null;
-		}, duration);
+		}, duration + 700);
 
 		res.json({
 			status: 200,
