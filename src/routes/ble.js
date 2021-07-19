@@ -54,7 +54,7 @@ module.exports = function createBLERouter(mac) {
 		const g = parse(req.params.g);
 		const b = parse(req.params.b);
 
-		const previousColor = rgb.currentMode.color;
+		const previousColor = [ ...rgb.currentMode.color ];
 
 		rgb
 			.setMode('solid')
@@ -73,7 +73,7 @@ module.exports = function createBLERouter(mac) {
 		const parse = x => Math.max(0.0, Math.min(360.0, parseFloat(x))) || 0.0;
 		const hue = parse(req.params.hue);
 
-		const previousColor = rgb.currentMode.color;
+		const previousColor = [ ...rgb.currentMode.color ];
 
 		rgb
 			.setMode('solid')
@@ -102,13 +102,13 @@ module.exports = function createBLERouter(mac) {
 		const parse = x => Math.max(0.0, Math.min(100, parseFloat(x))) || 0.0;
 		const saturation = parse(req.params.saturation);
 
-		const previousColor = rgb.currentMode.color;
+		const previousColor = [ ...rgb.currentMode.color ];
 
 		rgb
 			.setMode('solid')
 			.setSaturation(saturation / 100);
 
-			rgb.setTransitionOverride(previousColor, rgb.currentMode.color);
+		rgb.setTransitionOverride(previousColor, rgb.currentMode.color);
 
 		res.json({
 			status: 200,
@@ -131,7 +131,7 @@ module.exports = function createBLERouter(mac) {
 		const parse = x => Math.max(0.0, Math.min(100, parseFloat(x))) || 0.0;
 		const brightness = parse(req.params.brightness);
 
-		const previousColor = rgb.currentMode.color;
+		const previousColor = [ ...rgb.currentMode.color ];
 
 		rgb
 			.setMode('solid')
