@@ -2,7 +2,7 @@ try {
 	const express = require('express');
 	const app = express();
 
-	const PORT = 4001;
+	const PORT = process.env.PORT || 4001;
 
 	const createBLERouter = require('./routes/ble');
 
