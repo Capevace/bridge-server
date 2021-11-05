@@ -4,13 +4,16 @@ let queue = [];
 let transmitting = false;
 
 module.exports.queueTransmission = function queueTransmission(code) {
-	if (transmitting) {
-		queue.push(code);
-	} else {
+	console.log('[433MHz] Queueing', code);
+	queue.push(code);
+
+	if (!transmitting) {
 		transmitting = true;
 
 		while(queue.length !== 0) {
-			transmitCode(queue.shift());
+			const queuedCode = queue.shift();
+			console.log('[433MHz] Transmitting', queuedCode);
+			// transmitCode(queuedCode);
 		}
 
 		transmitting = false;
