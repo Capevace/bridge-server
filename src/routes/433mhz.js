@@ -1,6 +1,6 @@
 const Router = require('express').Router;
-const transmitCode = require('433mhz');
 
+const { queueTransmission } = require('../helpers/433mhz-queue');
 const generateIntertechnoCode = require('../helpers/generate-intertechno-code');
 
 const app = new Router();
@@ -22,7 +22,7 @@ app.get('/:code/:state', function (req, res) {
 	console.log(`[Dispatch] Setting switch ${code} to: ${state ? 'On' : 'Off'}`);
 
 	if (!dryRun) {
-		transmitCode(code);
+		queueTransmission(code);
 	}
 
 	res.json({
