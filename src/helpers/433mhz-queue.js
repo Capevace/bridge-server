@@ -13,7 +13,7 @@ module.exports.queueTransmission = function queueTransmission(code) {
 		while(queue.length !== 0) {
 			const queuedCode = queue.shift();
 			console.log('[433MHz] Transmitting', queuedCode);
-			// transmitCode(queuedCode);
+			transmitCode(queuedCode);
 		}
 
 		transmitting = false;
