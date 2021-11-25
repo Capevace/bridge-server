@@ -1,5 +1,5 @@
 const Router = require('express').Router;
-const { RGBLEDDriver } = require('rgb-led-driver');
+const { RGBLEDDriver, MockedLED, GATTLED } = require('rgb-led-driver');
 // const transmitCode = require('433mhz');
 
 // const generateIntertechnoCode = require('../helpers/generate-intertechno-code');
@@ -14,12 +14,9 @@ function initRGBDriver(mac, debug = false) {
 	// In debug mode we print a color box to stdout
 	// instead of connecting to the BLE LED
 	if (debug) {
-		// Mocked connect
-		rgb.led = mockLED(rgb);
-		rgb.setTickSpeed(rgb.tickSpeed);
+		rgb.setLED(new MockedLED(rgb));
 	} else {
-		rgb.connect(mac)
-			.catch(console.error.bind(console));
+		rgb.setLED(new GATTLED('72:16:03:00:D4:61'));
 	}
 
 	return rgb;
