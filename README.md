@@ -108,6 +108,9 @@ Restart the custom RGB LED driver
 
 
 ## Changelog
+### 1.2.1
+- Fixed README displaying `<style></style>` tag
+
 ### 1.2.0
 - Added `bridge-server` CLI command to `package.json`
 
