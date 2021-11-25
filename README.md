@@ -1,39 +1,35 @@
 <!-- This CSS is only included in the rendered docs.html of the server -->
-<!-- This CSS is only included in the rendered docs.html of the server -->
-<svg fill="none" viewBox="0 0 0 0" width="0" height="0" xmlns="http://www.w3.org/2000/svg">
-    <foreignObject width="100%" height="100%">
-        <div xmlns="http://www.w3.org/1999/xhtml">
-            <style type="text/css">
-                body {
-                    max-width: 700px;
-                    margin: auto;
-                    font-family: ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
-                }
+<!-- PASTE INTO docs.html WHEN REGENERATING -->
+<!-- 
+<style type="text/css">
+    body {
+        max-width: 700px;
+        margin: auto;
+        font-family: ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
+    }
 
-                h2 {
-                    margin-top: 50px;
-                    margin-bottom: 20px;
-                    padding-bottom: 5px;
-                    border-bottom: 1px lightgray solid;
-                }
+    h2 {
+        margin-top: 50px;
+        margin-bottom: 20px;
+        padding-bottom: 5px;
+        border-bottom: 1px lightgray solid;
+    }
 
-                h3 {
-                    margin-top: 20px;
-                }
+    h3 {
+        margin-top: 20px;
+    }
 
 
 
-                ul {
-                    margin-bottom: 40px;
-                }
+    ul {
+        margin-bottom: 40px;
+    }
 
-                li ul {
-                    margin-bottom:  0px;
-                }
-            </style>
-        </div>
-    </foreignObject>
-</svg>
+    li ul {
+        margin-bottom:  0px;
+    }
+</style> 
+-->
 
 <div align="center">
     <a href="https://mateffy.me/mission-control-project">
