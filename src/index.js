@@ -1,4 +1,5 @@
 try {
+	const path = require('path');
 	const express = require('express');
 	const app = express();
 
@@ -17,6 +18,7 @@ try {
 	const ledStrip = createBLERouter('72:16:03:00:D4:61');
 	app.use('/qhm-d461', ledStrip);
 	app.use('/ble', ledStrip);
+	app.use('/resources', express.static(path.resolve(__dirname, '../resources')));
 	app.use('/', require('./routes/docs'));
 
 	app.listen(PORT, function () {
