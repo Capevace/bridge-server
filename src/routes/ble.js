@@ -1,6 +1,5 @@
 const Router = require('express').Router;
-const { RGBLEDDriver } = require('ble-led-driver');
-const mockLED = require('../helpers/mock-led');
+const { RGBLEDDriver } = require('rgb-led-driver');
 // const transmitCode = require('433mhz');
 
 // const generateIntertechnoCode = require('../helpers/generate-intertechno-code');
