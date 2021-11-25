@@ -102,3 +102,14 @@ Enable Random mode
 
 ### `/ble/restart`
 Restart the custom RGB LED driver
+
+
+## Changelog
+### 1.2.0
+- Added `bridge-server` CLI command to `package.json`
+
+### 1.1.0
+- Added `/ble/restart` route
+
+### 1.0.0
+- Stable release
