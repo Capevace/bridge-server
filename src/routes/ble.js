@@ -5,20 +5,43 @@ const mockLED = require('../helpers/mock-led');
 
 // const generateIntertechnoCode = require('../helpers/generate-intertechno-code');
 
-module.exports = function createBLERouter(mac) {
-	const app = new Router();
-	const rgb = new RGBLEDDriver(mac);
+function initRGBDriver(mac, debug = false) {
+	let rgb = new RGBLEDDriver();
+
+	rgb.onTickError((e) => {
+		// console.error('TICK:ERROR', e);
+	});
 
 	// In debug mode we print a color box to stdout
 	// instead of connecting to the BLE LED
-	if (Array.from(process.argv).includes('--debug')) {
+	if (debug) {
 		// Mocked connect
 		rgb.led = mockLED(rgb);
 		rgb.setTickSpeed(rgb.tickSpeed);
 	} else {
-		rgb.connect()
+		rgb.connect(mac)
 			.catch(console.error.bind(console));
 	}
+
+	return rgb;
+}
+
+module.exports = function createBLERouter(mac) {
+	const DEBUG = Array.from(process.argv).includes('--debug');
+	const app = new Router();
+	
+	let rgb = initRGBDriver(mac, DEBUG);
+
+	app.all('/restart', function (req, res) {
+		rgb.stop();
+		rgb = null; // GC
+		rgb = initRGBDriver(mac, DEBUG);
+
+		res.json({
+			status: 200,
+			restarted: true
+		});
+	});
 
 	app.all('/on', function (req, res) {
 		rgb.setMode('solid');
@@ -180,7 +203,7 @@ module.exports = function createBLERouter(mac) {
 		const parse = x => Math.max(0.0, Math.min(255.0, parseFloat(x))) || 0.0;
 		const speed = req.query.speed
 			? parse(req.query.speed)
-			: null;
+			: 0.1; // Default speed = 0.1
 
 		rgb.setMode('rainbow');
 
