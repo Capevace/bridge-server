@@ -16,6 +16,9 @@
   "bugs": {
     "url": "https://github.com/capevace/bridge-server/issues"
   },
+  "bin": {
+    "bridge-server": "./src/index.js"
+  },
   "homepage": "https://github.com/capevace/bridge-server#readme",
   "dependencies": {
     "433mhz": "^1.1.0",
