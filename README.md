@@ -108,6 +108,9 @@ Restart the custom RGB LED driver
 
 
 ## Changelog
+### 1.2.2
+- Switched back to normal `node:16` docker image, as Alpine wasn't working with BLE
+
 ### 1.2.1
 - Fixed README displaying `<style></style>` tag
 
