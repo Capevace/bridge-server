@@ -140,6 +140,9 @@ Restart the custom RGB LED driver
 
 
 ## Changelog
+### 1.2.4
+- Fixed BLE logging & connectivity issues
+
 ### 1.2.3
 - Fixed 433MHz queue: commands are no longer lost but are executed after each other in order of receival
 
