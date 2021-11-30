@@ -121,7 +121,7 @@ module.exports = function createBLERouter(mac) {
 			? mode.hueColor[0]
 			: mode.chroma(...mode.color, 'rgb').hsl()[0];
 
-		res.send(String(hue));
+		res.send(String(Math.floor(hue)));
 	});
 
 	app.all('/saturation/:saturation', function (req, res) {
