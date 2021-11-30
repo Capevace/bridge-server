@@ -55,11 +55,11 @@
 - Pass `--debug` for easier development of BLE modes
 
 ## Usage
-```sh
+```bash
 npm install bridge-server
 ``` 
 
-```sh
+```bash
 bridge-server
 ``` 
 
@@ -68,16 +68,20 @@ bridge-server
 - PORT - *The HTTP server port*
 
 *Example:*
-```sh
+```bash
 PORT=4001 bridge-server
 ``` 
 
 **Log**
-- DEBUG - *Enable debug output*
+- DEBUG - *Enable debug modes (mock / log)*
 
 *Example:*
-```sh
-DEBUG=1 bridge-server
+```bash
+# This will show the debug color output
+DEBUG=mock bridge-server
+
+# This will log all GATTTOOL output
+DEBUG=log bridge-server
 ``` 
 
 **Infrared**
@@ -85,7 +89,7 @@ DEBUG=1 bridge-server
 - IR_DEVICE_PORT - *The port of the Arduino*
 
 *Example:*
-```sh
+```bash
 IR_DEVICE_HOST="192.168.0.102" IR_DEVICE_PORT=4005 bridge-server
 ``` 
 

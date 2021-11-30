@@ -8,13 +8,13 @@ function initRGBDriver(mac, debug = false) {
 	let rgb = new RGBLEDDriver();
 
 	rgb.onTickError((e) => {
-		if (process.env.DEBUG)
+		if (debug === 'log')
 			console.error('TICK:ERROR', e);
 	});
 
 	// In debug mode we print a color box to stdout
 	// instead of connecting to the BLE LED
-	if (debug) {
+	if (debug === 'mock') {
 		rgb.setLED(new MockedLED(rgb));
 	} else {
 		rgb.setLED(new GATTLED('72:16:03:00:D4:61'));
@@ -24,7 +24,7 @@ function initRGBDriver(mac, debug = false) {
 }
 
 module.exports = function createBLERouter(mac) {
-	const DEBUG = Array.from(process.argv).includes('--debug');
+	const DEBUG = process.env.DEBUG;
 	const app = new Router();
 	
 	let rgb = initRGBDriver(mac, DEBUG);
