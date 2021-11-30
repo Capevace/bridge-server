@@ -16,7 +16,15 @@ function initRGBDriver(mac, debug = false) {
 	if (debug === 'mock') {
 		rgb.setLED(new MockedLED(rgb));
 	} else {
-		rgb.setLED(new GATTLED('72:16:03:00:D4:61', (msg) => console.log(msg)));
+		rgb.setLED(
+			new GATTLED(
+				'72:16:03:00:D4:61', 
+				(msg) => {
+					if (debug === 'log')
+						console.log(msg);
+				}
+			)
+		);
 	}
 
 	return rgb;
