@@ -25,6 +25,10 @@ try {
 
 	app.listen(PORT, function () {
 		console.log(`[HTTP] Bridge Server listening on port ${PORT}`);
+
+		if (process.env.DEBUG) {
+			console.log('DEBUG: ' + process.env.DEBUG);
+		}
 	});
 
 } catch (e) {
