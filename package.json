@@ -1,6 +1,6 @@
 {
   "name": "bridge-server",
-  "version": "1.2.3",
+  "version": "1.2.4",
   "description": "Bride http connections to GPIO output.",
   "main": "src/index.js",
   "scripts": {
