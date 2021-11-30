@@ -1,7 +1,7 @@
 const Net = require('net');
 
-const HOST = process.argv[2];
-const PORT = process.argv[3];
+const HOST = process.env.IR_HOST;
+const PORT = process.env.IR_PORT;
 const IR_ENABLED = HOST && PORT;
 
 const client = new Net.Socket();

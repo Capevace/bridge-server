@@ -54,12 +54,32 @@
     - [`ble-led-driver`](https://github.com/capevace/ble-led-driver) is used which requires `gatttool` internally
 - Pass `--debug` for easier development of BLE modes
 
-## CLI
+## Usage
 ```sh
-node src/index.js [IR_DEVICE_HOST] [IR_DEVICE_PORT]
+npm install bridge-server
 ``` 
+
+```sh
+bridge-server
+``` 
+
+### Environment Variables
+**HTTP**
+- PORT - *The HTTP server port*
+
+*Example:*
+```sh
+PORT=4001 bridge-server
+``` 
+
+**Infrared**
 - IR_DEVICE_HOST - *The IP of the Arduino*
 - IR_DEVICE_PORT - *The port of the Arduino*
+
+*Example:*
+```sh
+IR_DEVICE_HOST="192.168.0.102" IR_DEVICE_PORT=4005 bridge-server
+``` 
 
 ## 433Mhz route
 ### `/433mhz/:CODE/:STATE`

@@ -56,13 +56,27 @@
 </li>
 <li>Pass <code>--debug</code> for easier development of BLE modes</li>
 </ul>
-<h2 id="cli">CLI</h2>
-<pre><code class="lang-sh"><span class="hljs-keyword">node</span> <span class="hljs-title">src</span>/index.js [IR_DEVICE_HOST] [IR_DEVICE_PORT]
+<h2 id="usage">Usage</h2>
+<pre><code class="lang-sh">npm <span class="hljs-keyword">install</span> bridge-<span class="hljs-keyword">server</span>
 </code></pre>
+<pre><code class="lang-sh">bridge-<span class="hljs-keyword">server</span>
+</code></pre>
+<h3 id="environment-variables">Environment Variables</h3>
+<p><strong>HTTP</strong></p>
+<ul>
+<li>PORT - <em>The HTTP server port</em></li>
+</ul>
+<p><em>Example:</em></p>
+<pre><code class="lang-sh"><span class="hljs-attr">PORT</span>=<span class="hljs-number">4001</span> bridge-server
+</code></pre>
+<p><strong>Infrared</strong></p>
 <ul>
 <li>IR_DEVICE_HOST - <em>The IP of the Arduino</em></li>
 <li>IR_DEVICE_PORT - <em>The port of the Arduino</em></li>
 </ul>
+<p><em>Example:</em></p>
+<pre><code class="lang-sh"><span class="hljs-attr">IR_DEVICE_HOST</span>=<span class="hljs-string">"192.168.0.102"</span> IR_DEVICE_PORT=<span class="hljs-number">4005</span> bridge-server
+</code></pre>
 <h2 id="433mhz-route">433Mhz route</h2>
 <h3 id="-433mhz-code-state-"><code>/433mhz/:CODE/:STATE</code></h3>
 <p>Send an intertechno 433Mhz code using the attached 433Mhz transmitter.</p>
