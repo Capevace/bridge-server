@@ -72,6 +72,14 @@ bridge-server
 PORT=4001 bridge-server
 ``` 
 
+**Log**
+- DEBUG - *Enable debug output*
+
+*Example:*
+```sh
+DEBUG=1 bridge-server
+``` 
+
 **Infrared**
 - IR_DEVICE_HOST - *The IP of the Arduino*
 - IR_DEVICE_PORT - *The port of the Arduino*

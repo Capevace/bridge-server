@@ -8,7 +8,8 @@ function initRGBDriver(mac, debug = false) {
 	let rgb = new RGBLEDDriver();
 
 	rgb.onTickError((e) => {
-		// console.error('TICK:ERROR', e);
+		if (process.env.DEBUG)
+			console.error('TICK:ERROR', e);
 	});
 
 	// In debug mode we print a color box to stdout
