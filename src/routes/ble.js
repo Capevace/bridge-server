@@ -8,9 +8,7 @@ function initRGBDriver(mac, debug = false) {
 	let rgb = new RGBLEDDriver();
 
 	rgb.onTickError((e) => {
-		console.log(debug);
-		if (debug === 'log')
-			console.error('TICK:ERROR', e);
+		// console.error('TICK:ERROR', e);
 	});
 
 	// In debug mode we print a color box to stdout
@@ -18,7 +16,7 @@ function initRGBDriver(mac, debug = false) {
 	if (debug === 'mock') {
 		rgb.setLED(new MockedLED(rgb));
 	} else {
-		rgb.setLED(new GATTLED('72:16:03:00:D4:61'));
+		rgb.setLED(new GATTLED('72:16:03:00:D4:61', (msg) => console.log(msg)));
 	}
 
 	return rgb;
